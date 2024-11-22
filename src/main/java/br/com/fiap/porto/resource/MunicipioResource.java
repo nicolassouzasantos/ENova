@@ -20,14 +20,11 @@ public class MunicipioResource {
         try (Connection conn = ConnectionFactory.getConnection()) {
             MunicipioDAO municipioDAO = new MunicipioDAO(conn);
 
-            // Formata o nome da cidade
             String nomeFormatado = Municipio.formatarNomeCidade(nome);
             System.out.println(nomeFormatado);
-            // Busca o município com o nome formatado
             Municipio municipio = municipioDAO.findByNome(nomeFormatado);
 
             if (municipio != null) {
-                // Retorna as porcentagens de energia
                 return Response.ok(municipio).build();
             } else {
                 return Response.status(Response.Status.NOT_FOUND).entity("Município não encontrado").build();

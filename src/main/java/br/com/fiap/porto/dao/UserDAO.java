@@ -38,5 +38,24 @@ public class UserDAO {
         return user;
     }
 
-    // Outros métodos CRUD podem ser adicionados aqui
+    public User findUserByEmailCidadeUf(String email, String cidade, String uf) throws SQLException {
+        String query = "SELECT * FROM ENOVA_USERS WHERE email_user = ? AND cidade_user = ? AND uf_user = ?";
+        try (PreparedStatement stmt = connection.prepareStatement(query)) {
+            stmt.setString(1, email);
+            stmt.setString(2, cidade);
+            stmt.setString(3, uf);
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    return new User(
+                            rs.getLong("id_user"),
+                            rs.getString("nm_user"),
+                            rs.getString("email_user"),
+                            rs.getString("cidade_user"),
+                            rs.getString("uf_user")
+                    );
+                }
+            }
+        }
+        return null;
+    }
 }

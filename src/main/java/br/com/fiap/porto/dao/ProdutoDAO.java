@@ -14,7 +14,6 @@ public class ProdutoDAO {
         this.connection = connection;
     }
 
-    // Método GET para recuperar todos os produtos
     public List<Produto> getAllProdutos() throws SQLException {
         String sql = "SELECT * FROM ENOVA_PRODUTOS";
         List<Produto> produtos = new ArrayList<>();
@@ -38,8 +37,7 @@ public class ProdutoDAO {
         return produtos;
     }
 
-    // Método para atualizar qtd_vendas de um produto
-    public boolean atualizarQtdVendas(Long idProd, int quantidade) throws SQLException {
+        public boolean atualizarQtdVendas(Long idProd, int quantidade) throws SQLException {
         String sql = "UPDATE ENOVA_PRODUTOS SET qtd_vendas = qtd_vendas + ? WHERE id_prod = ?";
 
         try (PreparedStatement stmt = connection.prepareStatement(sql)) {
@@ -51,7 +49,6 @@ public class ProdutoDAO {
         }
     }
 
-    // Método opcional para obter um produto por ID
     public Produto getProdutoById(Long idProd) throws SQLException {
         String sql = "SELECT * FROM ENOVA_PRODUTOS WHERE id_prod = ?";
 
@@ -98,7 +95,7 @@ public class ProdutoDAO {
                     produto.setPerEconomia(rs.getDouble("per_economia")); // Novo campo
                     return produto;
                 } else {
-                    return null; // Nenhum produto encontrado que caiba na área disponível
+                    return null;
                 }
             }
         }

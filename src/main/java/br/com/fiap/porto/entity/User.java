@@ -19,18 +19,16 @@ public class User {
     @JsonProperty("uf_user")
     private String ufUser;
 
-    // Construtores
-    public User() {
-    }
+    public User() {}
 
-    public User(String nmUser, String emailUser, String cidadeUser, String ufUser) {
+    public User(Long idUser, String nmUser, String emailUser, String cidadeUser, String ufUser) {
+        this.idUser = idUser;
         this.nmUser = nmUser;
         this.emailUser = emailUser;
         this.cidadeUser = cidadeUser;
         this.ufUser = ufUser;
     }
 
-    // Getters e Setters
     public Long getIdUser() {
         return idUser;
     }

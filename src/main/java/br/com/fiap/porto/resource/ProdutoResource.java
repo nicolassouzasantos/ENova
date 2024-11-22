@@ -13,7 +13,6 @@ import java.util.List;
 @Path("/produtos")
 public class ProdutoResource {
 
-    // Método GET para recuperar todos os produtos
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public Response getProdutos() {
@@ -32,7 +31,6 @@ public class ProdutoResource {
         }
     }
 
-    // Método para atualizar qtd_vendas de um produto
     @PUT
     @Path("/{id}/vendas")
     @Consumes(MediaType.APPLICATION_JSON)
@@ -45,13 +43,11 @@ public class ProdutoResource {
         try (Connection conn = ConnectionFactory.getConnection()) {
             ProdutoDAO produtoDAO = new ProdutoDAO(conn);
 
-            // Verifica se o produto existe
             Produto produto = produtoDAO.getProdutoById(idProd);
             if (produto == null) {
                 return Response.status(Response.Status.NOT_FOUND).entity("Produto não encontrado").build();
             }
 
-            // Atualiza a qtd_vendas
             boolean atualizado = produtoDAO.atualizarQtdVendas(idProd, quantidade);
 
             if (atualizado) {

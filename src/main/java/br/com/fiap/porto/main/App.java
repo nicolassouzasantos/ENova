@@ -11,10 +11,9 @@ public class App {
     public static final String BASE_URI = "http://localhost:8080/";
 
     public static HttpServer startServer() {
-        // Cria uma instância do ResourceConfig que registra os recursos no pacote especificado
+
         final ResourceConfig rc = new ResourceConfig().packages("br.com.fiap.porto.resource");
 
-        // Inicia o servidor Grizzly
         return GrizzlyHttpServerFactory.createHttpServer(URI.create(BASE_URI), rc);
     }
 
